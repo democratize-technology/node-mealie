@@ -1,0 +1,49 @@
+graph TB
+    subgraph "Node-Mealie Client"
+        A[MealieClient] --> B[CommentsService]
+        A --> C[RecipeService]
+        A --> D[UserService]
+        A --> E[GroupsService]
+        A --> F[AuthService]
+        A --> G[Other Services...]
+    end
+    
+    subgraph "Comments API Operations"
+        B --> H[Get All Comments]
+        B --> I[Create Comment]
+        B --> J[Get Single Comment]
+        B --> K[Update Comment]
+        B --> L[Delete Comment]
+    end
+    
+    subgraph "Comments Data Types"
+        H --> M[RecipeCommentPagination]
+        I --> N[RecipeCommentCreate]
+        I --> O[RecipeCommentOut]
+        J --> O
+        K --> P[RecipeCommentUpdate]
+        K --> O
+        L --> Q[SuccessResponse]
+    end
+    
+    subgraph "Query Parameters"
+        H --> R[CommentQueryParams]
+        R --> S[OrderDirection]
+        R --> T[OrderByNullPosition]
+        R --> U[Pagination]
+    end
+    
+    subgraph "Mealie Backend"
+        H -- GET --> V[/api/comments]
+        I -- POST --> V
+        J -- GET --> W[/api/comments/{id}]
+        K -- PUT --> W
+        L -- DELETE --> W
+    end
+    
+    style B fill:#f96,stroke:#333,stroke-width:4px
+    style H fill:#bbf,stroke:#333,stroke-width:2px
+    style I fill:#bbf,stroke:#333,stroke-width:2px
+    style J fill:#bbf,stroke:#333,stroke-width:2px
+    style K fill:#bbf,stroke:#333,stroke-width:2px
+    style L fill:#bbf,stroke:#333,stroke-width:2px

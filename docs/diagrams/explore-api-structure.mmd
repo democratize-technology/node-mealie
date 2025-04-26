@@ -1,0 +1,52 @@
+flowchart TD
+    subgraph ExploreAPI["Explore API Structure"]
+        Group["Group (Slug)"]
+        
+        subgraph Resources["Explorable Resources"]
+            Foods["Foods API"]
+            Households["Households API"]
+            
+            subgraph Organizers["Organizers"]
+                Categories["Categories API"]
+                Tags["Tags API"]
+                Tools["Tools API"]
+            end
+            
+            Cookbooks["Cookbooks API"]
+            Recipes["Recipes API"]
+            Suggestions["Recipe Suggestions API"]
+        end
+        
+        Group --> Foods
+        Group --> Households
+        Group --> Organizers
+        Group --> Cookbooks
+        Group --> Recipes
+        Group --> Suggestions
+    end
+    
+    subgraph Methods["API Methods"]
+        List["List All (with pagination/filters)"]
+        GetOne["Get Single Item"]
+        Special["Special Methods"]
+    end
+    
+    Foods --> List
+    Foods --> GetOne
+    Households --> List
+    Households --> GetOne
+    Categories --> List
+    Categories --> GetOne
+    Tags --> List
+    Tags --> GetOne
+    Tools --> List
+    Tools --> GetOne
+    Cookbooks --> List
+    Cookbooks --> GetOne
+    Recipes --> List
+    Recipes --> GetOne
+    Suggestions --> Special
+    
+    style Group fill:#f9f,stroke:#333,stroke-width:4px
+    style Organizers fill:#bbf,stroke:#333,stroke-width:2px
+    style Methods fill:#bfb,stroke:#333,stroke-width:2px

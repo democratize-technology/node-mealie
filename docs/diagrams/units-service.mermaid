@@ -1,0 +1,62 @@
+classDiagram
+    class MealieClient {
+        +baseUrl: string
+        +token: string
+        +get(path: string): Promise~T~
+        +post(path: string, data: any): Promise~T~
+        +put(path: string, data: any): Promise~T~
+        +delete(path: string): Promise~T~
+    }
+
+    class UnitsService {
+        +getAllUnits(params?: QueryParams): Promise~IngredientUnitPagination~
+        +createUnit(data: CreateIngredientUnit): Promise~IngredientUnit~
+        +mergeUnits(data: MergeUnit): Promise~SuccessResponse~
+        +getOne(itemId: string): Promise~IngredientUnit~
+        +updateUnit(itemId: string, data: CreateIngredientUnit): Promise~IngredientUnit~
+        +deleteUnit(itemId: string): Promise~IngredientUnit~
+    }
+
+    class IngredientUnit {
+        +id: string
+        +name: string
+        +[key: string]: any
+    }
+
+    class CreateIngredientUnit {
+        +name: string
+        +[key: string]: any
+    }
+
+    class IngredientUnitPagination {
+        +items: IngredientUnit[]
+        +page?: number
+        +perPage?: number
+        +total?: number
+        +totalPages?: number
+    }
+
+    class MergeUnit {
+        +fromUnit: string
+        +toUnit: string
+    }
+
+    class QueryParams {
+        +search?: string
+        +orderBy?: string
+        +orderDirection?: OrderDirection
+        +orderByNullPosition?: OrderByNullPosition
+        +queryFilter?: string
+        +paginationSeed?: string
+        +page?: number
+        +perPage?: number
+    }
+
+    MealieClient <|-- UnitsService
+    UnitsService ..> IngredientUnit : returns
+    UnitsService ..> CreateIngredientUnit : accepts
+    UnitsService ..> IngredientUnitPagination : returns
+    UnitsService ..> MergeUnit : accepts
+    UnitsService ..> QueryParams : accepts
+    
+    note for UnitsService "Extends MealieClient to add\nunit-specific API operations"

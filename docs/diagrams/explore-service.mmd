@@ -1,0 +1,72 @@
+classDiagram
+    class ExploreService {
+        +getFoods(groupSlug, params?)
+        +getFood(groupSlug, itemId, acceptLanguage?)
+        +getHouseholds(groupSlug, params?)
+        +getHousehold(groupSlug, householdSlug, acceptLanguage?)
+        +getCategories(groupSlug, params?)
+        +getCategory(groupSlug, itemId, acceptLanguage?)
+        +getTags(groupSlug, params?)
+        +getTag(groupSlug, itemId, acceptLanguage?)
+        +getTools(groupSlug, params?)
+        +getTool(groupSlug, itemId, acceptLanguage?)
+        +getCookbooks(groupSlug, params?)
+        +getCookbook(groupSlug, itemId, acceptLanguage?)
+        +getRecipes(groupSlug, params?)
+        +getRecipeSuggestions(groupSlug, params?)
+        +getRecipe(groupSlug, recipeSlug, acceptLanguage?)
+        -buildQueryString(params?)
+    }
+    
+    class MealieClient {
+        #baseUrl
+        #token
+        #debug
+        +get(path, options?)
+        +post(path, body?, options?)
+        +put(path, body?, options?)
+        +delete(path, options?)
+        -request(path, options?)
+    }
+    
+    class ExploreQueryParams {
+        +search?: string
+        +orderBy?: string
+        +orderDirection?: OrderDirection
+        +orderByNullPosition?: OrderByNullPosition
+        +queryFilter?: string
+        +paginationSeed?: string
+        +page?: number
+        +perPage?: number
+        +acceptLanguage?: string
+    }
+    
+    class ExploreRecipesParams {
+        +categories?: string[]
+        +tags?: string[]
+        +tools?: string[]
+        +foods?: string[]
+        +households?: string[]
+        +cookbook?: string
+        +requireAllCategories?: boolean
+        +requireAllTags?: boolean
+        +requireAllTools?: boolean
+        +requireAllFoods?: boolean
+    }
+    
+    class RecipeSuggestionsParams {
+        +foods?: string[]
+        +tools?: string[]
+        +limit?: number
+        +maxMissingFoods?: number
+        +maxMissingTools?: number
+        +includeFoodsOnHand?: boolean
+        +includeToolsOnHand?: boolean
+    }
+    
+    ExploreService --|> MealieClient
+    ExploreRecipesParams --|> ExploreQueryParams
+    RecipeSuggestionsParams --|> ExploreQueryParams
+    ExploreService --> ExploreQueryParams
+    ExploreService --> ExploreRecipesParams
+    ExploreService --> RecipeSuggestionsParams

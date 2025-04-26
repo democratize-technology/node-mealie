@@ -1,0 +1,37 @@
+flowchart TD
+    subgraph Units Service API
+        A[/api/units] --> |GET| B[getAllUnits]
+        A --> |POST| C[createUnit]
+        
+        D[/api/units/merge] --> |PUT| E[mergeUnits]
+        
+        F["/api/units/{item_id}"] --> |GET| G[getOne]
+        F --> |PUT| H[updateUnit]
+        F --> |DELETE| I[deleteUnit]
+    end
+    
+    subgraph Request Parameters
+        B --> J[QueryParams]
+        C --> K[CreateIngredientUnit]
+        E --> L[MergeUnit]
+        H --> M[CreateIngredientUnit]
+        G --> N[itemId]
+        I --> N
+    end
+    
+    subgraph Response Types
+        B --> O[IngredientUnitPagination]
+        C --> P[IngredientUnit]
+        E --> Q[SuccessResponse]
+        G --> P
+        H --> P
+        I --> P
+    end
+    
+    style A fill:#e1f5fe,stroke:#01579b
+    style D fill:#e1f5fe,stroke:#01579b
+    style F fill:#e1f5fe,stroke:#01579b
+    
+    style O fill:#e8f5e9,stroke:#1b5e20
+    style P fill:#e8f5e9,stroke:#1b5e20
+    style Q fill:#e8f5e9,stroke:#1b5e20

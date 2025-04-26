@@ -1,0 +1,69 @@
+flowchart TB
+    subgraph client["Node-Mealie Client"]
+        MC[MealieClient]
+        
+        subgraph services["Services"]
+            AS[AboutService]
+            AUS[AuthService]
+            US[UserService]
+            HS[HouseholdsService]
+            GS[GroupsService]
+            RS[RecipeService]
+            OS[OrganizerService]
+            SS[SharedService]
+            CS[CommentsService]
+            IPS[IngredientParserService]
+            FS[FoodsService]
+            UNS[UnitsService]:::highlight
+        end
+    end
+    
+    subgraph types["Type Definitions"]
+        CT[Common Types]
+        UT[User Types]
+        RT[Recipe Types]
+        HT[Household Types]
+        GT[Group Types]
+        FT[Foods Types]
+        UNT[Units Types]:::highlight
+    end
+    
+    subgraph api["Mealie API Endpoints"]
+        MA[/api/about]
+        MAU[/api/auth]
+        MU[/api/users]
+        MH[/api/households]
+        MG[/api/groups]
+        MR[/api/recipes]
+        MO[/api/organizer]
+        MSH[/api/shared]
+        MC_[/api/comments]
+        MI[/api/ingredient-parser]
+        MF[/api/foods]
+        MUN[/api/units]:::highlight
+    end
+    
+    MC --> AS & AUS & US & HS & GS & RS & OS & SS & CS & IPS & FS & UNS
+    
+    AS --> MA
+    AUS --> MAU
+    US --> MU
+    HS --> MH
+    GS --> MG
+    RS --> MR
+    OS --> MO
+    SS --> MSH
+    CS --> MC_
+    IPS --> MI
+    FS --> MF
+    UNS --> MUN
+    
+    CT --> AS & AUS & US & HS & GS & RS & OS & SS & CS & IPS & FS & UNS
+    UT --> US
+    RT --> RS
+    HT --> HS
+    GT --> GS
+    FT --> FS
+    UNT --> UNS
+    
+    classDef highlight fill:#ffd700,stroke:#333,stroke-width:4px;

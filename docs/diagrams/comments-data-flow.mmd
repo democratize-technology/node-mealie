@@ -1,0 +1,37 @@
+sequenceDiagram
+    participant Client as Client Application
+    participant CS as CommentsService
+    participant MC as MealieClient
+    participant API as Mealie API
+    
+    Note over Client,API: Create Comment Flow
+    Client->>CS: createComment(data)
+    CS->>MC: post('/api/comments', data)
+    MC->>API: POST /api/comments
+    API-->>MC: 201 Created (RecipeCommentOut)
+    MC-->>CS: RecipeCommentOut
+    CS-->>Client: RecipeCommentOut
+    
+    Note over Client,API: Get Comments Flow
+    Client->>CS: getAllComments(params)
+    CS->>MC: get('/api/comments?queryParams')
+    MC->>API: GET /api/comments?queryParams
+    API-->>MC: 200 OK (RecipeCommentPagination)
+    MC-->>CS: RecipeCommentPagination
+    CS-->>Client: RecipeCommentPagination
+    
+    Note over Client,API: Update Comment Flow
+    Client->>CS: updateComment(id, data)
+    CS->>MC: put('/api/comments/{id}', data)
+    MC->>API: PUT /api/comments/{id}
+    API-->>MC: 200 OK (RecipeCommentOut)
+    MC-->>CS: RecipeCommentOut
+    CS-->>Client: RecipeCommentOut
+    
+    Note over Client,API: Delete Comment Flow
+    Client->>CS: deleteComment(id)
+    CS->>MC: delete('/api/comments/{id}')
+    MC->>API: DELETE /api/comments/{id}
+    API-->>MC: 200 OK (SuccessResponse)
+    MC-->>CS: SuccessResponse
+    CS-->>Client: SuccessResponse
