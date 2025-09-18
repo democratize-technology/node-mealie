@@ -102,6 +102,8 @@ export interface UserRatings<T> {
 }
 
 // Pagination Types
+import { OrderDirection, OrderByNullPosition } from './common';
+
 export interface UserPagination {
   items: UserOut[];
   total: number;
@@ -114,8 +116,8 @@ export interface PaginationQuery {
   page?: number;
   perPage?: number;
   orderBy?: string;
-  orderDirection?: 'asc' | 'desc';
-  orderByNullPosition?: 'first' | 'last';
+  orderDirection?: OrderDirection;
+  orderByNullPosition?: OrderByNullPosition;
   queryFilter?: string;
   paginationSeed?: string;
 }
