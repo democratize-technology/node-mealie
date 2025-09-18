@@ -102,15 +102,9 @@ export interface UserRatings<T> {
 }
 
 // Pagination Types
-import { QueryParams } from './common';
+import { PaginationBase, QueryParams } from './common';
 
-export interface UserPagination {
-  items: UserOut[];
-  total: number;
-  page: number;
-  perPage: number;
-  totalPages: number;
-}
+export type UserPagination = PaginationBase<UserOut>;
 
 export type PaginationQuery = QueryParams;
 

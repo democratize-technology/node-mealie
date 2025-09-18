@@ -7,9 +7,9 @@ export type OrderByNullPosition = 'first' | 'last';
 
 export interface PaginationBase<T> {
   page: number;
-  per_page: number;
+  perPage: number;
   total: number;
-  total_pages: number;
+  totalPages: number;
   items: T[];
   next?: string;
   previous?: string;
