@@ -86,11 +86,7 @@ export interface UserRatingOut {
   isFavorite?: boolean;
 }
 
-export interface UserRatingSummary {
-  recipeId: string;
-  rating?: number;
-  isFavorite?: boolean;
-}
+export type UserRatingSummary = Omit<UserRatingOut, 'id' | 'userId'>;
 
 export interface UserRatingUpdate {
   rating?: number;
