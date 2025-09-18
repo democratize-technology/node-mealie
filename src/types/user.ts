@@ -97,9 +97,7 @@ export interface UserRatingUpdate {
   isFavorite?: boolean;
 }
 
-export interface UserRatings<T> {
-  ratings: T[];
-}
+export type UserRatings = UserRatingOut[];
 
 // Pagination Types
 import { PaginationBase, QueryParams } from './common';
