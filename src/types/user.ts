@@ -102,7 +102,7 @@ export interface UserRatings<T> {
 }
 
 // Pagination Types
-import { OrderDirection, OrderByNullPosition } from './common';
+import { QueryParams } from './common';
 
 export interface UserPagination {
   items: UserOut[];
@@ -112,15 +112,7 @@ export interface UserPagination {
   totalPages: number;
 }
 
-export interface PaginationQuery {
-  page?: number;
-  perPage?: number;
-  orderBy?: string;
-  orderDirection?: OrderDirection;
-  orderByNullPosition?: OrderByNullPosition;
-  queryFilter?: string;
-  paginationSeed?: string;
-}
+export type PaginationQuery = QueryParams;
 
 // Image Types
 export interface UserImageUpdate {
